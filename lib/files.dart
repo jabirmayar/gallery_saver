@@ -1,4 +1,4 @@
-import 'package:path/path.dart';
+import 'package:path/path.dart'as p;
 
 const List<String> videoFormats = [
   '.mp4',
@@ -17,6 +17,11 @@ const List<String> imageFormats = [
   '.webp',
   '.tif',
   '.heic'
+  '.pdf' 
+  '.doc'
+  '.docx'
+  '.xls'
+  '.xlsx' 
 ];
 const http = 'http';
 
@@ -24,9 +29,18 @@ bool isLocalFilePath(String path) {
   Uri uri = Uri.parse(path);
   return !uri.scheme.contains(http);
 }
+bool isVideo(String path) {
+  bool isItVideo = false;
+  videoFormats.forEach((videoFormats) {
+    if (path.toLowerCase().contains(videoFormats)) isItVideo = true;
+  });
+  return isItVideo;
+}
 
-bool isVideo(String path) =>
-    videoFormats.contains(extension(path).toLowerCase());
-
-bool isImage(String path) =>
-    imageFormats.contains(extension(path).toLowerCase());
+bool isImage(String path) {
+  bool isItImage = false;
+  imageFormats.forEach((imageFormats) {
+    if (path.toLowerCase().contains(imageFormats)) isItImage = true;
+  });
+  return isItImage;
+}
