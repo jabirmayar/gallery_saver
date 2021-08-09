@@ -20,7 +20,7 @@ class GallerySaver {
   ///saves video from provided temp path and optional album name in gallery
   static Future<bool?> saveVideo(String path, {String? albumName}) async {
     File? tempFile;
-    if (path.isEmpty) {
+    if (path == null || path.isEmpty) {
       throw ArgumentError(pleaseProvidePath);
     }
     if (!isVideo(path)) {
@@ -43,7 +43,7 @@ class GallerySaver {
   ///saves image from provided temp path and optional album name in gallery
   static Future<bool?> saveImage(String path, {String? albumName}) async {
     File? tempFile;
-    if (path.isEmpty) {
+    if (path == null || path.isEmpty) {
       throw ArgumentError(pleaseProvidePath);
     }
     if (!isImage(path)) {
