@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:gallery_saver/files.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
-import 'package:path/path.dart';
+import 'package:path/path.dart' as p;
 
 class GallerySaver {
   static const String channelName = 'gallery_saver';
@@ -68,11 +68,13 @@ class GallerySaver {
 
   static Future<File> _downloadFile(String url,String name) async {
     print(url);
+    final path = p.basename(url);
+    final extension = p.extension(path);
     http.Client _client = new http.Client();
     var req = await _client.get(Uri.parse(url));
     var bytes = req.bodyBytes;
     String dir = (await getTemporaryDirectory()).path;
-    File file = new File('$dir/$name');
+    File file = new File('$dir/$name$extension');
     await file.writeAsBytes(bytes);
     print('File size:${await file.length()}');
     print(file.path);
