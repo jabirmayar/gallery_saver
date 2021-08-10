@@ -68,11 +68,10 @@ class GallerySaver {
 
   static Future<File> _downloadFile(String url,String name) async {
     print(url);
-    final path = p.basename(url);
     String extension = "";
-    if (path.toLowerCase().contains("jpg")) {
+    if (url.toLowerCase().contains("jpg")) {
        extension = ".Jpg";
-    } else if (path.toLowerCase().contains("png")) {
+    } else if (url.toLowerCase().contains("png")) {
        extension = ".Png";
     }else{
     extension = ".Png";
