@@ -69,7 +69,14 @@ class GallerySaver {
   static Future<File> _downloadFile(String url,String name) async {
     print(url);
     final path = p.basename(url);
-    final extension = p.extension(path);
+    String extension = "";
+    if (path.toLowerCase().contains("jpg")) {
+       extension = ".Jpg";
+    } else if (path.toLowerCase().contains("png")) {
+       extension = ".Png";
+    }else{
+    extension = ".Png";
+    }
     http.Client _client = new http.Client();
     var req = await _client.get(Uri.parse(url));
     var bytes = req.bodyBytes;
